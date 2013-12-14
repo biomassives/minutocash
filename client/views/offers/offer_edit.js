@@ -2,19 +2,18 @@
  * Created by mindestens on 12/14/13.
  */
 Template.offerEdit.events({
-  'submit form': function(e) {
+  'submit form': function (e) {
     e.preventDefault();
 
-    var currentOfferId = this._id;
+    var currentOfferId = this._id,
+      offerProperties = {
+        firstname: $(e.target).find('[name=firstname]').val(),
+        lastname: $(e.target).find('[name=lastname]').val(),
+        phone: $(e.target).find('[name=phone]').val(),
+        content: $(e.target).find('[name=content]').val()
+      };
 
-    var offerProperties = {
-      firstname: $(e.target).find('[name=firstname]').val(),
-      lastname: $(e.target).find('[name=lastname]').val(),
-      phone: $(e.target).find('[name=phone]').val(),
-      content: $(e.target).find('[name=content]').val()
-    };
-
-    Offers.update(currentOfferId, {$set: offerProperties}, function(error) {
+    Offers.update(currentOfferId, {$set: offerProperties}, function (error) {
       if (error) {
         // display the error to the user
         throwError(error.reason);
@@ -24,7 +23,7 @@ Template.offerEdit.events({
     });
   },
 
-  'click .delete': function(e) {
+  'click .delete': function (e) {
     e.preventDefault();
 
     if (confirm("Delete this offer?")) {
