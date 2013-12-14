@@ -9,7 +9,7 @@
       <a class="brand" href="{{pathFor 'offersList'}}">Minutocash</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li><a href="{{pathFor 'offerCreate'}}">New Offer</a></li>
+          {{#if currentUser}}<li><a href="{{pathFor 'offerCreate'}}">New Offer</a></li>{{/if}}
         </ul>
         <ul class="nav pull-right">
           <li>{{loginButtons}}</li>
