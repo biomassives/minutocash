@@ -3,6 +3,18 @@
  */
 Offers = new Meteor.Collection('offers');
 
+Offers.allow({
+  update: ownsDocument,
+  remove: ownsDocument
+});
+
+Offers.deny({
+  update: function (userId, offer, fieldNames) {
+    // may only edit the following fields (must be all fields which are being displayed by the form!):
+    return (_.without(fieldNames, 'firstname', 'lastname', 'phone', 'content').length > 0);
+  }
+});
+
 Meteor.methods({
   offer: function (offerAttributes) {
     var user = Meteor.user();

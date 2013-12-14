@@ -4,6 +4,10 @@
       <h3><span>{{firstname}}</span> <span>{{lastname}}</span></h3>
       <p>{{phone}}</p>
       <p>{{content}}</p>
+      <p>
+        created by {{author}}
+        {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}">Edit</a>{{/if}}
+      </p>
     </div>
     <a href="{{pathFor 'offerPage'}}" class="view-details btn">View Details</a>
   </div>
