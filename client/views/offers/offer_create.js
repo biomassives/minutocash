@@ -12,7 +12,12 @@ Template.offerCreate.events({
       content: $(e.target).find('[name=content]').val()
     }
 
-    offer._id = Offers.insert(offer);
-    Router.go('offerPage', offer);
+    Meteor.call('offer', offer, function (error, id) {
+      if (error) {
+        return alert(error.reason);
+      }
+
+      Router.go('offerPage', {_id: id});
+    });
   }
 });

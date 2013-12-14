@@ -1,1 +1,2 @@
-- adding users
+- by creating a new offer, check if the offer has already been created before (but which vars should be checked for this routine?)
+- make the offers sort by last name by default, but make sure first make the string .toLowerCase() to provide acurate sorting

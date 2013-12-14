@@ -3,6 +3,7 @@
  */
 Template.offersList.helpers({
   offers: function() {
-    return Offers.find();
+    // return all offers and sort by created date
+    return Offers.find({}, {sort: {created: -1}});
   }
 });
