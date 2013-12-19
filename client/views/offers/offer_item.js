@@ -3,6 +3,6 @@
  */
 Template.offerItem.helpers({
   ownOffer: function () {
-    return this.userId === Meteor.userId();
+    return this.ownerId === Meteor.userId();
   }
 });

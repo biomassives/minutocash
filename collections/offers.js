@@ -46,8 +46,9 @@ Meteor.methods({
 
     // pick out the whitelisted keys
     var offer = _.extend(_.pick(offerAttributes, 'firstname', 'lastname', 'phone', 'content'), {
-      userId: user._id,
-      author: user.username,
+      // set meta properties
+      ownerId: user._id,
+      ownerName: user.username,
       created: new Date().getTime()
     });
 

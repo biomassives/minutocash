@@ -10,7 +10,7 @@ Template.offerCreate.events({
       lastname: $(e.target).find('[name=lastname]').val(),
       phone: $(e.target).find('[name=phone]').val(),
       content: $(e.target).find('[name=content]').val()
-    }
+    };
 
     Meteor.call('offer', offer, function (error, id) {
       if (error) {
@@ -18,6 +18,7 @@ Template.offerCreate.events({
       }
 
       Router.go('offerPage', {_id: id});
+      return null;
     });
   }
 });
