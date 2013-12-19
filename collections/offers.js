@@ -28,20 +28,36 @@ Meteor.methods({
     if (!offerAttributes.firstname) {
       throw new Meteor.Error(422, 'Please fill in a first name');
     }
+    // ensure the offers firstname is not too long
+    if (offerAttributes.firstname.length > 50) {
+      throw new Meteor.Error(422, 'First name is too long');
+    }
 
     // ensure the offer has a lastname
     if (!offerAttributes.lastname) {
       throw new Meteor.Error(422, 'Please fill in a last name');
+    }
+    // ensure the offers lastname is not too long
+    if (offerAttributes.lastname.length > 50) {
+      throw new Meteor.Error(422, 'Last name is too long');
     }
 
     // ensure the offer has a phone numer
     if (!offerAttributes.phone) {
       throw new Meteor.Error(422, 'Please fill in a phone numer');
     }
+    // ensure the offers phone number is not too long
+    if (offerAttributes.phone.length > 50) {
+      throw new Meteor.Error(422, 'Phone number is too long');
+    }
 
     // ensure the offer has a content
     if (!offerAttributes.content) {
       throw new Meteor.Error(422, 'Please fill in a content');
+    }
+    // ensure the offers content is not too long
+    if (offerAttributes.content.length > 2000) {
+      throw new Meteor.Error(422, 'Offer is too long');
     }
 
     // pick out the whitelisted keys
