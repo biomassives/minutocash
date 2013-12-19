@@ -16,7 +16,7 @@ Offers.deny({
 });
 
 Meteor.methods({
-  offer: function (offerAttributes) {
+  createOffer: function (offerAttributes) {
     var user = Meteor.user();
 
     // ensure the user is logged in

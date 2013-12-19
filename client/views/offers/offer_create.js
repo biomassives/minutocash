@@ -12,7 +12,7 @@ Template.offerCreate.events({
       content: $(e.target).find('[name=content]').val()
     };
 
-    Meteor.call('offer', offer, function (error, id) {
+    Meteor.call('createOffer', offer, function (error, id) {
       if (error) {
         return alert(error.reason);
       }
