@@ -65,11 +65,22 @@ Meteor.methods({
       // set meta properties
       ownerId: user._id,
       ownerName: user.username,
-      created: new Date().getTime()
+      created: new Date().getTime(),
+      // set additional properties
+      sharedWith: []
     });
 
     var offerId = Offers.insert(offer);
 
     return offerId;
+  },
+  invite: function (offerId, userId) {
+    var offer = Offers.findOne(offerId);
+    if (!Meteor.users.findOne({username: userId}))
+      throw new Meteor.Error(422, "No such user");
+    userId = Meteor.users.findOne({username: userId})._id;
+    if (userId !== offer.ownerId && ! _.contains(offer.invited, userId)) {
+      Offers.update(offerId, { $addToSet: { sharedWith: userId } });
+    }
   }
 });

@@ -1,0 +1,28 @@
+<template name="inviteDialog">
+  <div class="mask"></div>
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="close done">&times;</button>
+      <h3>Share this offer</h3>
+    </div>
+
+
+    <div class="modal-body">
+      <div class="invite-row">
+        <form class="main">
+          <div class="control-group">
+            <label class="control-label" for="username">Username to share this offer with</label>
+            <div class="controls">
+              <input name="username" type="text" value="" placeholder="Username"/>
+              <input type="submit" value="Share" class="btn"/>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary done">Done</a>
+      </div>
+    </div>
+</template>

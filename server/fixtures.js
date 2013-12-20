@@ -49,7 +49,8 @@ if (Offers.find().count() === 0) {
     content: 'Decision Making, Teaching Tree climbing, Accounting.',
     ownerId: tester._id,
     ownerName: tester.username,
-    created: new Date().getTime()
+    created: new Date().getTime(),
+    sharedWith: []
   });
   Offers.insert({
     firstname: 'No',
