@@ -40,7 +40,8 @@ if (Offers.find().count() === 0) {
     content: 'Writing Biographies, Feeding pets like dogs, cats and cavies.',
     ownerId: barfoo._id,
     ownerName: barfoo.username,
-    created: new Date().getTime()
+    created: new Date().getTime(),
+    sharedWith: [foobar._id]
   });
   Offers.insert({
     firstname: 'Bat',

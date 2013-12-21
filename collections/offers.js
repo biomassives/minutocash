@@ -74,7 +74,7 @@ Meteor.methods({
 
     return offerId;
   },
-  invite: function (offerId, userId) {
+  share: function (offerId, userId) {
     var offer = Offers.findOne(offerId);
     if (!Meteor.users.findOne({username: userId}))
       throw new Meteor.Error(422, "No such user");
