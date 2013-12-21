@@ -79,8 +79,17 @@ Meteor.methods({
     if (!Meteor.users.findOne({username: userId}))
       throw new Meteor.Error(422, "No such user");
     userId = Meteor.users.findOne({username: userId})._id;
-    if (userId !== offer.ownerId && ! _.contains(offer.invited, userId)) {
+    if (userId !== offer.ownerId && ! _.contains(offer.sharedWith, userId)) {
       Offers.update(offerId, { $addToSet: { sharedWith: userId } });
+    }
+  },
+  unshare: function (offerId, userId) {
+    var offer = Offers.findOne(offerId);
+    if (!Meteor.users.findOne({username: userId}))
+      throw new Meteor.Error(422, "No such user");
+    userId = Meteor.users.findOne({username: userId})._id;
+    if (userId !== offer.ownerId && _.contains(offer.sharedWith, userId)) {
+      Offers.update(offerId, { $pull: { sharedWith: userId } });
     }
   }
 });
