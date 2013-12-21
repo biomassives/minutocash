@@ -1,31 +1,6 @@
 <template name="offerPage">
   {{> offerItem}}
   {{#if ownOffer}}
-  <div class="offer">
-    <div class="offer-content">
-      <h3>Settings for the offer {{firstname}} {{lastname}}</h3>
-      <h5>Share with an user</h5>
-      <form class="main">
-        <div class="control-group">
-          <div class="controls">
-            <input name="username" type="text" value="" placeholder="Username"/>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <input type="submit" value="Share" class="btn btn-primary"/>
-          </div>
-        </div>
-      </form>
-      <h5>Already shared with the following users</h5>
-
-      <ul>
-        {{#each sharedWith}}
-        <li>{{shareName}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
+  {{> offerPageSettings}}
   {{/if}}
 </template>
