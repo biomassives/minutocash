@@ -20,3 +20,18 @@ Template.offerPageSettings.events({
     Meteor.subscribe("directory");
   }
 });
+
+Template.offerPageSettings.events({
+  'click button': function(e) {
+    e.preventDefault();
+
+    var userId = this.toString();
+    var offerId = Session.get('actualOffer');
+
+    Meteor.call('unshare', offerId, userId, function (error, id) {
+      if (error) {
+        return alert(error.reason);
+      }
+    });
+  }
+});

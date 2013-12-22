@@ -6,13 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="{{pathFor 'offersList'}}">Minutocash</a>
+      <a class="brand" href="{{pathFor 'offersList'}}"><i class="icon-home"></i> Minutocash</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          {{#if currentUser}}<li><a href="{{pathFor 'offerCreate'}}">New Offer</a></li>{{/if}}
+          {{#if currentUser}}<li><a href="{{pathFor 'offerCreate'}}"><i class="icon-plus-sign"></i> New Offer</a></li>{{/if}}
         </ul>
         <ul class="nav pull-right">
-          <li><a href="{{pathFor 'about'}}">About</a></li>
+          <li><a href="{{pathFor 'about'}}"><i class="icon-info-sign"></i> About Minutocash</a></li>
           <li>{{loginButtons}}</li>
         </ul>
       </div>

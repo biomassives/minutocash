@@ -7,5 +7,12 @@ Template.offerItem.helpers({
   },
   ownerName: function () {
     return displayName(this.ownerId);
+  },
+  detailsView: function () {
+    if (this._id === Session.get('actualOffer')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 });

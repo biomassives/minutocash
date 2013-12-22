@@ -74,20 +74,22 @@ Meteor.methods({
 
     return offerId;
   },
-  share: function (offerId, userId) {
+  share: function (offerId, userName) {
+    // TODO: check if the user is already on the list an throw an error
     var offer = Offers.findOne(offerId);
-    if (!Meteor.users.findOne({username: userId}))
+    if (!Meteor.users.findOne({username: userName}))
       throw new Meteor.Error(422, "No such user");
-    userId = Meteor.users.findOne({username: userId})._id;
+    var userId = Meteor.users.findOne({username: userName})._id;
+    if (this.userId === userId)
+      throw new Meteor.Error(422, "You can\'t share with yourself");
     if (userId !== offer.ownerId && ! _.contains(offer.sharedWith, userId)) {
       Offers.update(offerId, { $addToSet: { sharedWith: userId } });
     }
   },
   unshare: function (offerId, userId) {
     var offer = Offers.findOne(offerId);
-    if (!Meteor.users.findOne({username: userId}))
+    if (!Meteor.users.findOne({_id: userId}))
       throw new Meteor.Error(422, "No such user");
-    userId = Meteor.users.findOne({username: userId})._id;
     if (userId !== offer.ownerId && _.contains(offer.sharedWith, userId)) {
       Offers.update(offerId, { $pull: { sharedWith: userId } });
     }

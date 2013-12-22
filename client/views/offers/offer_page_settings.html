@@ -1,29 +1,18 @@
 <template name="offerPageSettings">
   <div class="offer">
     <div class="offer-content">
-      <h3>Settings for the offer {{firstname}} {{lastname}}</h3>
-      <h5>Share with an user</h5>
-      <form>
-        <div class="control-group">
-          <div class="controls">
+      <h3><i class="icon-wrench"></i> Settings</h3>
+      <h5><i class='icon-share'></i> Share with an user</h5>
+      <form name="share" class="form-inline">
             <input name="username" type="text" value="" placeholder="Username"/>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
             <input type="submit" value="Share" class="btn btn-primary"/>
-          </div>
-        </div>
       </form>
-      <h5>Already shared with the following users</h5>
-
-      <ul>
+      {{#if sharedWith}}
+      <h5><i class="icon-user"></i> Shared with:</h5>
         {{#each sharedWith}}
-        <li>{{shareName}}</li>
+        <span class="label">{{shareName}} <button class="btn-mini btn-link"><i class="icon-remove"></i></button></span>
         {{/each}}
-      </ul>
-      {{> unshare}}
+      {{/if}}
     </div>
   </div>
 </template>

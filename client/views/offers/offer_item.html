@@ -1,14 +1,15 @@
 <template name="offerItem">
   <div class="offer">
     <div class="offer-content">
-      <h3>{{firstname}} {{lastname}}</h3>
+      <h3><a href="{{pathFor 'offerPage'}}">{{firstname}} {{lastname}}</a></h3>
+
       <p>{{phone}}</p>
+
       <p>{{content}}</p>
-      <p>
-        owned by {{ownerName}}
-        {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}">Edit</a>{{/if}}
-      </p>
+
+      <p><span class="label">owned by {{ownerName}}</span></p>
     </div>
-    <a href="{{pathFor 'offerPage'}}" class="view-details btn ">View Details</a>
+    {{#unless detailsView}}<a href="{{pathFor 'offerPage'}}" class="view-details btn">View Details</a>{{/unless}}
+    {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}" class="view-details btn"><i class="icon-edit"></i> Edit</a>{{/if}}
   </div>
 </template>
