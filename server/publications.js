@@ -9,6 +9,18 @@ Meteor.publish('offers', function() {
   );
 });
 
+// publish all user profiles which any of the offers have been shared to
 Meteor.publish("directory", function () {
-  return Meteor.users.find({}, {fields: {'username': 1}});
+  var offersOwned = Offers.find({ownerId: this.userId});
+  var usersSharedWith = [];
+  offersOwned.forEach(function (offer) {
+    offer.sharedWith.forEach(function (sharedWith) {
+      if (usersSharedWith.indexOf(sharedWith) === -1) {
+        usersSharedWith.push(sharedWith);
+      }
+    });
+  });
+  // test:
+  // console.log(usersSharedWith);
+  return Meteor.users.find({_id: { $in: usersSharedWith } }, {fields: {'username': 1}});
 });

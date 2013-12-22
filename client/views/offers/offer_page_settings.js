@@ -16,5 +16,7 @@ Template.offerPageSettings.events({
         return alert(error.reason);
       }
     });
+    // subscribe to the directory to update users
+    Meteor.subscribe("directory");
   }
 });
