@@ -31,7 +31,8 @@ if (Offers.find().count() === 0) {
     content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
     ownerId: foobar._id,
     ownerName: foobar.username,
-    created: new Date().getTime()
+    created: new Date().getTime(),
+    sharedWith: []
   });
   Offers.insert({
     firstname: 'Super',
@@ -41,7 +42,7 @@ if (Offers.find().count() === 0) {
     ownerId: barfoo._id,
     ownerName: barfoo.username,
     created: new Date().getTime(),
-    sharedWith: [foobar._id]
+    sharedWith: [foobar._id, barfoo._id]
   });
   Offers.insert({
     firstname: 'Bat',
@@ -53,6 +54,7 @@ if (Offers.find().count() === 0) {
     created: new Date().getTime(),
     sharedWith: []
   });
+  // offer without an owner. for testing purposes (visible if no user is logged in?)
   Offers.insert({
     firstname: 'No',
     lastname: 'Owner',
