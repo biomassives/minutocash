@@ -6,10 +6,3 @@ Template.offerItem.helpers({
     return this.ownerId === Meteor.userId();
   }
 });
-
-Template.offerItem.events({
-  'click .share': function () {
-    openInviteDialog();
-    return false;
-  }
-});
