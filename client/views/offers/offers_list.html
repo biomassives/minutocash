@@ -1,7 +1,22 @@
 <template name="offersList">
+  <div class="search">
+    {{> searchForm }}
+
+    <div id="searchInfo">
+      {{#if results.count}}
+      <strong>{{results.count}}</strong> of <strong>{{results.offersTotal}}</strong> offers match your search query:
+      {{else}}
+        No offer matches your search query.
+      {{#if currentUser}}
+        If you can offer this, create a <a href="{{pathFor 'offerCreate'}}">new Offer</a>.
+      {{/if}}
+      {{/if}}
+    </div>
+  </div>
+
   <div class="offers">
-    {{#each offers}}
-      {{> offerItem}}
+    {{#each results.offers}}
+    {{> offerItem}}
     {{/each}}
   </div>
 </template>
