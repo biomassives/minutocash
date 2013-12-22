@@ -4,5 +4,8 @@
 Template.offerItem.helpers({
   ownOffer: function () {
     return this.ownerId === Meteor.userId();
+  },
+  ownerName: function () {
+    return displayName(this.ownerId);
   }
 });

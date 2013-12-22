@@ -30,7 +30,6 @@ if (Offers.find().count() === 0) {
     phone: '+41 79 123 45 67',
     content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
     ownerId: foobar._id,
-    ownerName: foobar.username,
     created: new Date().getTime(),
     sharedWith: []
   });
@@ -40,7 +39,6 @@ if (Offers.find().count() === 0) {
     phone: '+41 78 321 54 76',
     content: 'Writing Biographies, Feeding pets like dogs, cats and cavies.',
     ownerId: barfoo._id,
-    ownerName: barfoo.username,
     created: new Date().getTime(),
     sharedWith: [foobar._id, barfoo._id]
   });
@@ -50,7 +48,6 @@ if (Offers.find().count() === 0) {
     phone: '+41 76 765 43 21',
     content: 'Decision Making, Teaching Tree climbing, Accounting.',
     ownerId: tester._id,
-    ownerName: tester.username,
     created: new Date().getTime(),
     sharedWith: []
   });

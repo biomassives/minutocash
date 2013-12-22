@@ -19,22 +19,28 @@ Meteor.publish('offers', function () {
   }
 });
 
-// publish all user profiles which any of the offers have been shared to
+// publish all user profiles which the user has a connection to (named as knownUsers)
 Meteor.publish("directory", function () {
   // check if the user is logged in
   if (this.userId) {
-    // return users which the logged in user is permitted to view:
-    // - users to which he has shared an offer he owns
+    var knownUsers = [];
+    // users to which the user has shared an offer
     var offersOwned = Offers.find({ownerId: this.userId});
-    var usersSharedWith = [];
     offersOwned.forEach(function (offer) {
       offer.sharedWith.forEach(function (sharedWith) {
-        if (usersSharedWith.indexOf(sharedWith) === -1) {
-          usersSharedWith.push(sharedWith);
+        if (knownUsers.indexOf(sharedWith) === -1) {
+          knownUsers.push(sharedWith);
         }
       });
     });
-    return Meteor.users.find({_id: { $in: usersSharedWith } }, {fields: {'username': 1}});
+    // owners of offers shared to the user
+    var offersSharedWith = Offers.find({sharedWith: this.userId});
+    offersSharedWith.forEach(function (offer) {
+      if (knownUsers.indexOf(offer.ownerId) === -1) {
+        knownUsers.push(offer.ownerId);
+      }
+    });
+    return Meteor.users.find({_id: { $in: knownUsers } }, {fields: {'username': 1}});
   } else {
     // return no users
     return Meteor.users.find(null);
