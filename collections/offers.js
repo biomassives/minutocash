@@ -108,7 +108,7 @@ Meteor.methods({
       receiverId: receiver._id,
       receiverName: receiverName,
       // FIXME: make default = false
-      accepted: true,
+      accepted: false,
       submitted: new Date().getTime()
     });
 

@@ -35,8 +35,9 @@ Meteor.publish('offersShared', function () {
   }
 });
 
+// LEGACY: with shareRelations not used anymore
 // publish all user profiles which the user has a connection to (named as knownUsers)
-Meteor.publish("directory", function () {
+/*Meteor.publish("directory", function () {
   // check if the user is logged in
   if (this.userId) {
     var knownUsers = [];
@@ -61,7 +62,7 @@ Meteor.publish("directory", function () {
     // return no users
     return Meteor.users.find(null);
   }
-});
+});*/
 
 Meteor.publish('shareRelations', function() {
   return ShareRelations.find(

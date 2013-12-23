@@ -9,7 +9,12 @@
       <a class="brand" href="{{pathFor 'offersList'}}"><i class="icon-home"></i> Minutocash</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          {{#if currentUser}}<li><a href="{{pathFor 'offerCreate'}}"><i class="icon-plus-sign"></i> New Offer</a></li>{{/if}}
+          {{#if currentUser}}
+          <li><a href="{{pathFor 'offerCreate'}}"><i class="icon-plus-sign"></i> New Offer</a></li>
+          <li class="dropdown">
+            {{> notifications}}
+          </li>
+          {{/if}}
         </ul>
         <ul class="nav pull-right">
           <li><a href="{{pathFor 'about'}}"><i class="icon-info-sign"></i> About Minutocash</a></li>
