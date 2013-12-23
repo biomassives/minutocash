@@ -64,7 +64,6 @@ Meteor.methods({
     var offer = _.extend(_.pick(offerAttributes, 'firstname', 'lastname', 'phone', 'content'), {
       // set meta properties
       ownerId: user._id,
-      ownerName: user.username,
       created: new Date().getTime(),
       // set additional properties
       sharedWith: []
