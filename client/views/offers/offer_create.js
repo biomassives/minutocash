@@ -14,7 +14,8 @@ Template.offerCreate.events({
 
     Meteor.call('createOffer', offer, function (error, id) {
       if (error) {
-        return alert(error.reason);
+        // display the error to the user
+        throwError(error.reason);
       }
 
       Router.go('offerPage', {_id: id});

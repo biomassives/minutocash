@@ -7,7 +7,7 @@
 
       <p>{{content}}</p>
 
-      <p><span class="label">owned by {{ownerName}}</span></p>
+      <p>owned by {{#if ownOffer}}<span class="label label-important">me</span>{{else}}<span class="label label-success">{{ownerName}}</span>{{/if}}</p>
     </div>
     {{#unless detailsView}}<a href="{{pathFor 'offerPage'}}" class="view-details btn">View Details</a>{{/unless}}
     {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}" class="view-details btn"><i class="icon-edit"></i> Edit</a>{{/if}}

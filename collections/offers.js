@@ -10,6 +10,8 @@ Offers.allow({
 
 Offers.deny({
   update: function (userId, offer, fieldNames) {
+    // TODO: check if all fields are not empty and not too long if an offer gets edited
+
     // may only edit the following fields (must be all fields which are being displayed by the form!):
     return (_.without(fieldNames, 'firstname', 'lastname', 'phone', 'content').length > 0);
   }
@@ -21,7 +23,7 @@ Meteor.methods({
 
     // ensure the user is logged in
     if (!user) {
-      throw new Meteor.Error(401, "You need to login to create new offers");
+      throw new Meteor.Error(401, "You need to login to create a new offer");
     }
 
     // ensure the offer has a firstname
@@ -74,21 +76,34 @@ Meteor.methods({
     return offerId;
   },
   share: function (offerId, userName) {
-    // TODO: check if the user is already on the list an throw an error
     var offer = Offers.findOne(offerId);
+
+    // checking for errors
+    // TODO: make sure only users which own the offer can share
     if (!Meteor.users.findOne({username: userName}))
       throw new Meteor.Error(422, "No such user");
+    // if the username exists, get the userId
     var userId = Meteor.users.findOne({username: userName})._id;
     if (this.userId === userId)
       throw new Meteor.Error(422, "You can\'t share with yourself");
-    if (userId !== offer.ownerId && ! _.contains(offer.sharedWith, userId)) {
-      Offers.update(offerId, { $addToSet: { sharedWith: userId } });
-    }
+    if (_.contains(offer.sharedWith, userId))
+      throw new Meteor.Error(422, "Already shared to this user");
+    if (userId === offer.ownerId)
+      throw new Meteor.Error(422, "You can\'t share with the owner of the offer");
+
+    // update the offer
+    Offers.update(offerId, { $addToSet: { sharedWith: userId } });
+
   },
   unshare: function (offerId, userId) {
     var offer = Offers.findOne(offerId);
+
+    // checking for errors
+    // TODO: make sure only users which own the offer can unshare
     if (!Meteor.users.findOne({_id: userId}))
       throw new Meteor.Error(422, "No such user");
+
+    // update the offer
     if (userId !== offer.ownerId && _.contains(offer.sharedWith, userId)) {
       Offers.update(offerId, { $pull: { sharedWith: userId } });
     }

@@ -13,11 +13,14 @@ Template.offerPageSettings.events({
 
     Meteor.call('share', this._id, user.name, function (error, id) {
       if (error) {
-        return alert(error.reason);
+        throwError(error.reason);
       }
     });
     // subscribe to the directory to update users
-    Meteor.subscribe("directory");
+    // TODO: get rid of strange behaviour: is (maybe) displaying the loading template or something when the user hasn't been previously known. this makes UX bad. it looks like the page gets reloaded.
+    Deps.autorun(function () {
+      Meteor.subscribe("directory");
+    });
   }
 });
 
@@ -30,7 +33,7 @@ Template.offerPageSettings.events({
 
     Meteor.call('unshare', offerId, userId, function (error, id) {
       if (error) {
-        return alert(error.reason);
+        throwError(error.reason);
       }
     });
   }
