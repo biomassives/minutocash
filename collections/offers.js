@@ -104,10 +104,8 @@ Meteor.methods({
 
     shareRelation = _.extend(_.pick(shareRelationAttributes, 'offerId'), {
       issuerId: user._id,
-      // FIXME: backup var if no profile name exists?
       issuerName: issuerName,
       receiverId: receiver._id,
-      // FIXME: backup var if no profile name exists?
       receiverName: receiverName,
       // FIXME: make default = false
       accepted: true,
