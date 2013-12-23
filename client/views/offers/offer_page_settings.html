@@ -7,15 +7,11 @@
             <input name="username" type="text" value="" placeholder="Username"/>
             <input type="submit" value="Share" class="btn btn-primary"/>
       </form>
+      {{#if hasShareRelations}}
       <h5><i class="icon-user"></i> Shared with:</h5>
       {{#each shareRelations}}
-        {{> shareRelations}}
+        {{> shareRelation}}
       {{/each}}
-      {{#if sharedWith}}
-      <h5><i class="icon-user"></i> Shared with:</h5>
-        {{#each sharedWith}}
-        <span class="label">{{shareName}} <button class="btn-mini btn-link"><i class="icon-remove"></i></button></span>
-        {{/each}}
       {{/if}}
     </div>
   </div>

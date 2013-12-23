@@ -35,8 +35,7 @@ if (Offers.find().count() === 0) {
     content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
     ownerId: foobarId,
     ownerName: foobar.profile.name,
-    created: new Date().getTime(),
-    sharedWith: []
+    created: new Date().getTime()
   });
   var superStarId = Offers.insert({
     firstname: 'Super',
@@ -45,8 +44,7 @@ if (Offers.find().count() === 0) {
     content: 'Writing Biographies, Feeding pets like dogs, cats and cavies.',
     ownerId: barfooId,
     ownerName: barfoo.profile.name,
-    created: new Date().getTime(),
-    sharedWith: [foobarId, testerId]
+    created: new Date().getTime()
   });
   var batWomanId = Offers.insert({
     firstname: 'Bat',
@@ -56,7 +54,6 @@ if (Offers.find().count() === 0) {
     ownerId: testerId,
     ownerName: tester.profile.name,
     created: new Date().getTime(),
-    sharedWith: []
   });
   // offer without an owner. for testing purposes (visible if no user is logged in?)
   var noOwnerId = Offers.insert({

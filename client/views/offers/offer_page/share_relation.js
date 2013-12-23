@@ -1,7 +1,7 @@
 /**
  * Created by mindestens on 12/23/13.
  */
-Template.shareRelations.events({
+Template.shareRelation.events({
   'click button': function(e) {
     e.preventDefault();
 

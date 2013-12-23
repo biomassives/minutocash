@@ -4,12 +4,11 @@
 Template.offerPageSettings.helpers({
   shareRelations: function () {
     return ShareRelations.find({offerId: this._id});
+  },
+  hasShareRelations: function () {
+    return ShareRelations.find({offerId: this._id}).count();
   }
 });
-
-Template.offerPageSettings.shareName = function () {
-  return displayName(this.toString());
-};
 
 Template.offerPageSettings.events({
   'submit form': function(e) {
