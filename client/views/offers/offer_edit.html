@@ -1,5 +1,5 @@
-<template name="offerEdit" xmlns="http://www.w3.org/1999/html">
-  <form class="main">
+<template name="offerEdit">
+  <form class="main form-horizontal">
     <div class="control-group">
       <label class="control-label" for="firstname">Fist name</label>
       <div class="controls">
@@ -24,19 +24,14 @@
     <div class="control-group">
       <label class="control-label" for="content">Offer</label>
       <div class="controls">
-        <textarea name="content" type="text" value="" placeholder="Your Offer">{{content}}</textarea>
+        <textarea rows="5" name="content" type="text" value="" placeholder="Your Offer">{{content}}</textarea>
       </div>
     </div>
 
     <div class="control-group">
       <div class="controls">
-        <input type="submit" value="Submit" class="btn btn-primary submit"/>
-      </div>
-    </div>
-    <hr/>
-    <div class="control-group">
-      <div class="controls">
-        <a class="btn btn-danger delete" href="#">Delete offer</a>
+        <input type="submit" value="Update" class="btn btn-primary submit"/>
+        <a class="btn btn-danger delete" href="#">Delete</a>
       </div>
     </div>
   </form>
