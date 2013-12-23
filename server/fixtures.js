@@ -82,7 +82,6 @@ if (ShareRelations.find().count() === 0) {
     issuerName: barfoo.profile.name,
     receiverId: foobarId,
     receiverName: foobar.profile.name,
-    message: "Hey dude, have a look at my newly created profile!",
     // TODO: make accepted default and integrate checking the receiver if he wants this offer
     accepted: true,
     created: new Date().getTime()
@@ -93,7 +92,6 @@ if (ShareRelations.find().count() === 0) {
     issuerName: foobar.profile.name,
     receiverId: barfooId,
     receiverName: barfoo.profile.name,
-    message: "Hey dude, have a look at my newly created profile!",
     // TODO: make accepted default and integrate checking the receiver if he wants this offer
     accepted: true,
     created: new Date().getTime()

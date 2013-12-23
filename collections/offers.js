@@ -75,37 +75,39 @@ Meteor.methods({
 
     return offerId;
   },
-  share: function (offerId, userName) {
-    var offer = Offers.findOne(offerId);
-
-    // checking for errors
-    // TODO: make sure only users which own the offer can share
+  shareRelation: function (shareRelationAttributes, userName) {
+    var user = Meteor.user();
+    var offer = Offers.findOne(shareRelationAttributes.offerId);
+    // ensure the user is logged in
+    if (!user)
+      throw new Meteor.Error(401, "You need to login to share");
     if (!Meteor.users.findOne({username: userName}))
       throw new Meteor.Error(422, "No such user");
     // if the username exists, get the userId
-    var userId = Meteor.users.findOne({username: userName})._id;
-    if (this.userId === userId)
+    var receiver = Meteor.users.findOne({username: userName});
+    if (user._id === receiver._id)
       throw new Meteor.Error(422, "You can\'t share with yourself");
-    if (_.contains(offer.sharedWith, userId))
-      throw new Meteor.Error(422, "Already shared to this user");
-    if (userId === offer.ownerId)
+    if (offer.ownerId === receiver._id)
       throw new Meteor.Error(422, "You can\'t share with the owner of the offer");
+    if (!offer)
+      throw new Meteor.Error(422, 'You must share an offer');
 
-    // update the offer
-    Offers.update(offerId, { $addToSet: { sharedWith: userId } });
+    shareRelation = _.extend(_.pick(shareRelationAttributes, 'offerId'), {
+      issuerId: user._id,
+      // FIXME: backup var if no profile name exists?
+      issuerName: user.profile.name,
+      receiverId: receiver._id,
+      // FIXME: backup var if no profile name exists?
+      receiverName: receiver.profile.name,
+      accepted: false,
+      submitted: new Date().getTime()
+    });
 
-  },
-  unshare: function (offerId, userId) {
-    var offer = Offers.findOne(offerId);
-
-    // checking for errors
-    // TODO: make sure only users which own the offer can unshare
-    if (!Meteor.users.findOne({_id: userId}))
-      throw new Meteor.Error(422, "No such user");
-
-    // update the offer
-    if (userId !== offer.ownerId && _.contains(offer.sharedWith, userId)) {
-      Offers.update(offerId, { $pull: { sharedWith: userId } });
+    // more error checking: check if the same shareRelation (offerId && receiverId) already exist
+    if (ShareRelations.findOne({ $and: [{offerId: shareRelation.offerId}, {receiverId: shareRelation.receiverId}]})) {
+      throw new Meteor.Error(422, "Already shared to this user");
     }
+
+    return ShareRelations.insert(shareRelation);
   }
 });

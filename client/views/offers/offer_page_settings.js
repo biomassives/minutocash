@@ -14,15 +14,16 @@ Template.offerPageSettings.events({
   'submit form': function(e) {
     e.preventDefault();
 
+    // TODO: change to email instead of username?
     var user = { name: $(e.target).find('[name=username]').val() };
-
-    Meteor.call('share', this._id, user.name, function (error, id) {
+    var shareRelation = {
+      // TODO: get the value with a different command? like template.data... (see discovermeteor p. 149)
+      offerId: Session.get('actualOffer')
+    };
+    Meteor.call('shareRelation', shareRelation, user.name, function (error, id) {
       if (error) {
         throwError(error.reason);
       }
     });
-    // subscribe to the directory to update users
-    // TODO: get rid of strange behaviour: is (maybe) displaying the loading template or something when the user hasn't been previously known. this makes UX bad. it looks like the page gets reloaded.
-      Meteor.subscribe("directory");
   }
 });

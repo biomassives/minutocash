@@ -1,8 +1,7 @@
 /**
  * Created by mindestens on 12/14/13.
  */
-// only need an account name to signup
-/*
+// FIXME: change to email only when sharing is switched to email
 Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_ONLY'
-});*/
+  passwordSignupFields: 'USERNAME_AND_EMAIL'
+})
