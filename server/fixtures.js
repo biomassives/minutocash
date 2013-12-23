@@ -3,33 +3,28 @@
  */
 if (Meteor.users.find().count() === 0) {
   // create some users
-  Accounts.createUser({
+  var foobarId = Accounts.createUser({
     username: "Foobar",
     password: "Foobar"
   });
-  Accounts.createUser({
+  var barfooId = Accounts.createUser({
     username: "Barfoo",
     password: "Barfoo"
   });
-  Accounts.createUser({
+  var testerId = Accounts.createUser({
     username: "Tester",
     password: "Tester"
   });
 }
 
 if (Offers.find().count() === 0) {
-  // get the Id of the newly created test users
-  var foobar = Meteor.users.findOne({username: "Foobar"});
-  var barfoo = Meteor.users.findOne({username: "Barfoo"});
-  var tester = Meteor.users.findOne({username: "Tester"});
-
   // create some offers
   Offers.insert({
     firstname: 'Max',
     lastname: 'Power',
     phone: '+41 79 123 45 67',
     content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
-    ownerId: foobar._id,
+    ownerId: foobarId,
     created: new Date().getTime(),
     sharedWith: []
   });
@@ -38,16 +33,16 @@ if (Offers.find().count() === 0) {
     lastname: 'Star',
     phone: '+41 78 321 54 76',
     content: 'Writing Biographies, Feeding pets like dogs, cats and cavies.',
-    ownerId: barfoo._id,
+    ownerId: barfooId,
     created: new Date().getTime(),
-    sharedWith: [foobar._id, tester._id]
+    sharedWith: [foobarId, testerId]
   });
   Offers.insert({
     firstname: 'Bat',
     lastname: 'Woman',
     phone: '+41 76 765 43 21',
     content: 'Decision Making, Teaching Tree climbing, Accounting.',
-    ownerId: tester._id,
+    ownerId: testerId,
     created: new Date().getTime(),
     sharedWith: []
   });

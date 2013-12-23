@@ -18,9 +18,7 @@ Template.offerPageSettings.events({
     });
     // subscribe to the directory to update users
     // TODO: get rid of strange behaviour: is (maybe) displaying the loading template or something when the user hasn't been previously known. this makes UX bad. it looks like the page gets reloaded.
-    Deps.autorun(function () {
       Meteor.subscribe("directory");
-    });
   }
 });
 
