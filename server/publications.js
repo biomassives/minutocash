@@ -1,7 +1,8 @@
 /**
  * Created by mindestens on 12/14/13.
  */
-Meteor.publish('offers', function () {
+// TODO: delete if switched to shareRelations
+/*Meteor.publish('offers', function () {
   // check if the user is logged in
   if (this.userId) {
     // return offers which the logged in user is permitted to view:
@@ -13,6 +14,40 @@ Meteor.publish('offers', function () {
         {ownerId: this.userId}
       ]}
     );
+  } else {
+    // return no offers
+    return Offers.find(null);
+  }
+});*/
+
+Meteor.publish('offersOwn', function () {
+  // check if the user is logged in
+  if (this.userId) {
+    // return offers which the logged in user is permitted to view:
+    // - owns the offer
+    // - the offer has been shared with him
+    return Offers.find({ownerId: this.userId});
+  } else {
+    // return no offers
+    return Offers.find(null);
+  }
+});
+Meteor.publish('offersShared', function () {
+  // check if the user is logged in
+  if (this.userId) {
+    var visibleOffers = [];
+    var shareRelations = ShareRelations.find({receiverId: this.userId});
+    if (shareRelations.count()) {
+      shareRelations.forEach(function (shareRelation) {
+        if (shareRelation.accepted) {
+          if (visibleOffers.indexOf(shareRelation.offerId) === -1) {
+            visibleOffers.push(shareRelation.offerId);
+          }
+        }
+      });
+    }
+
+    return Offers.find({_id:  { $in: visibleOffers } });
   } else {
     // return no offers
     return Offers.find(null);
@@ -45,4 +80,13 @@ Meteor.publish("directory", function () {
     // return no users
     return Meteor.users.find(null);
   }
+});
+
+Meteor.publish('shareRelations', function() {
+  return ShareRelations.find(
+    {$or: [
+      {issuerId: this.userId},
+      {receiverId: this.userId}
+    ]}
+  );
 });
