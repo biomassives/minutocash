@@ -66,9 +66,9 @@ Meteor.methods({
     var offer = _.extend(_.pick(offerAttributes, 'firstname', 'lastname', 'phone', 'content'), {
       // set meta properties
       ownerId: user._id,
+      // FIXME: get the best username (user.profile.name) but with fallback
+      ownerName: user.username,
       created: new Date().getTime(),
-      // set additional properties
-      sharedWith: []
     });
 
     var offerId = Offers.insert(offer);
@@ -92,14 +92,25 @@ Meteor.methods({
     if (!offer)
       throw new Meteor.Error(422, 'You must share an offer');
 
+    // get the most appropriate username, with a secure fallback
+    var issuerName = user.username;
+    if (user.profile && user.profile.name) {
+      issuerName = user.profile.name;
+    }
+    var receiverName = receiver.username;
+    if (receiver.profile && receiver.profile.name) {
+      receiverName = receiver.profile.name;
+    }
+
     shareRelation = _.extend(_.pick(shareRelationAttributes, 'offerId'), {
       issuerId: user._id,
       // FIXME: backup var if no profile name exists?
-      issuerName: user.profile.name,
+      issuerName: issuerName,
       receiverId: receiver._id,
       // FIXME: backup var if no profile name exists?
-      receiverName: receiver.profile.name,
-      accepted: false,
+      receiverName: receiverName,
+      // FIXME: make default = false
+      accepted: true,
       submitted: new Date().getTime()
     });
 

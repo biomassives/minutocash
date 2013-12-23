@@ -1,25 +1,6 @@
 /**
  * Created by mindestens on 12/14/13.
  */
-// TODO: delete if switched to shareRelations
-/*Meteor.publish('offers', function () {
-  // check if the user is logged in
-  if (this.userId) {
-    // return offers which the logged in user is permitted to view:
-    // - owns the offer
-    // - the offer has been shared with him
-    return Offers.find(
-      {$or: [
-        {sharedWith: this.userId},
-        {ownerId: this.userId}
-      ]}
-    );
-  } else {
-    // return no offers
-    return Offers.find(null);
-  }
-});*/
-
 Meteor.publish('offersOwn', function () {
   // check if the user is logged in
   if (this.userId) {
