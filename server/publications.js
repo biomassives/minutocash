@@ -16,9 +16,13 @@ Meteor.publish('offersOwn', function () {
 Meteor.publish('offersShared', function () {
   // check if the user is logged in
   if (this.userId) {
+    // initialize helper array
     var visibleOffers = [];
+    // initialize all shareRelations which the actual user is the receiver
     var shareRelations = ShareRelations.find({receiverId: this.userId});
+    // check if such relations exist
     if (shareRelations.count()) {
+      // loop trough all shareRelations and push the offerId to the array if the relation is accepted and the value isn't in the array actually
       shareRelations.forEach(function (shareRelation) {
         if (shareRelation.accepted) {
           if (visibleOffers.indexOf(shareRelation.offerId) === -1) {
@@ -27,7 +31,7 @@ Meteor.publish('offersShared', function () {
         }
       });
     }
-
+    // return offers which contain the _id in the array visibleOffers
     return Offers.find({_id:  { $in: visibleOffers } });
   } else {
     // return no offers
