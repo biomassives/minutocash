@@ -1,11 +1,13 @@
 minutocash
 ==========
 
-# About (English; for german, see below)
+# About (for german, see below)
 
 minutocash is a platform to share offers to people you know in real life built with
 [Meteor.js](http://meteor.com/). The platform should
 bring people together, which like to share and develop their skills.
+
+Check out the live app at [minutocash.sinndrin.ch](http://minutocash.sinndrin.ch).
 
 ## Concept
 
@@ -33,7 +35,7 @@ Das Prinzip ist angelehnt an das das selbst geschöpfte und dezentrale Zahlungsm
 
 # Testing and development
 
-Check out the live app at [minutocash.sinndrin.ch](http://minutocash.sinndrin.ch)
+Check out the live app at [minutocash.sinndrin.ch](http://minutocash.sinndrin.ch).
 
 The source code is available on [github](https://github.com/dandelo/minutocash)</a>.
 
