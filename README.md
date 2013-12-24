@@ -19,20 +19,6 @@ The main concept comes from the decentral currency [minutocash](http://minutocas
 * Share offers with other users
 * Search your offers
 
-# About (German)
-minutocash ist eine Plattform um Angebote zu erstellen, tauschen, verwalten und zu durchsuchen.
-Sie soll Menschen zusammenbringen, die ihre Fertigkeiten teilen und erweitern wollen.
-
-## Konzept
-Das Prinzip ist angelehnt an das das selbst geschöpfte und dezentrale Zahlungsmittel
-[minutocash](http://minutocash.org/).
-
-## Funktionen
-
-* Eigenes Angebot erstellen
-* Eigenes Angebot mit anderen Benutzern teilen
-* Angebote durchsuchen
-
 # Testing and development
 
 Check out the live app at [minutocash.sinndrin.ch](http://minutocash.sinndrin.ch).
@@ -59,3 +45,17 @@ Parts of the app come from the following sources:
 
 * [DISCOVER METEOR](https://www.discovermeteor.com/), the great book for learning meteor. (Almost all parts of the app)
 * [hmmm](https://github.com/schuel/hmmm), a Course-Organization-Platform built with Meteor.js (Fulltext-search with realtime-output  and the fancy ticker on top)
+
+# About (German)
+minutocash ist eine Plattform um Angebote zu erstellen, tauschen, verwalten und zu durchsuchen.
+Sie soll Menschen zusammenbringen, die ihre Fertigkeiten teilen und erweitern wollen.
+
+## Konzept
+Das Prinzip ist angelehnt an das das selbst geschöpfte und dezentrale Zahlungsmittel
+[minutocash](http://minutocash.org/).
+
+## Funktionen
+
+* Eigenes Angebot erstellen
+* Eigenes Angebot mit anderen Benutzern teilen
+* Angebote durchsuchen
