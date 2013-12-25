@@ -4,11 +4,12 @@
 Template.offerPageSettings.helpers({
   shareRelations: function () {
     return ShareRelations.find({offerId: this._id});
-  },
-  hasShareRelations: function () {
-    return ShareRelations.find({offerId: this._id}).count();
   }
 });
+
+Template.offerPageSettings.hasShareRelations = function () {
+    return ShareRelations.find({offerId: this._id}).count();
+};
 
 Template.offerPageSettings.events({
   'submit form': function(e) {
@@ -20,10 +21,11 @@ Template.offerPageSettings.events({
       // TODO: get the value with a different command? like template.data... (see discovermeteor p. 149)
       offerId: Session.get('actualOffer')
     };
-    Meteor.call('shareRelation', shareRelation, user.name, function (error, id) {
+    Meteor.call('createShareRelation', shareRelation, user.name, function (error, id) {
       if (error) {
         throwError(error.reason);
       }
+      return id;
     });
   }
 });

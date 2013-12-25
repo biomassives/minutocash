@@ -12,7 +12,7 @@ ShareRelations.allow({
 });
 
 Meteor.methods({
-  shareRelation: function (shareRelationAttributes, userName) {
+  createShareRelation: function (shareRelationAttributes, userName) {
     var user = Meteor.user();
     var offer = Offers.findOne(shareRelationAttributes.offerId);
     // ensure the user is logged in

@@ -1,6 +1,5 @@
 - by creating a new offer, check if the offer has already been created before (but which vars should be checked for this routine?)
 - make the offers sort by last name by default, but make sure first make the string .toLowerCase() to provide accurate sorting
-- if no ownerId is set, ervery not logged in user can view these offers (something wrong with publications.js?)
 
 NEXT STEPS
 - worked through ch.8 up to now.

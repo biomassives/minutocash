@@ -1,0 +1,29 @@
+<template name="search">
+  <div class="offer">
+    <div class="offer-content">
+      <h1>Search inside your offers</h1>
+
+      <form id='searchForm'>
+        <input id="search" name="search" class="searchForm" value="{{oldSearch}}"
+               placeholder="Name, offer content, etc.">
+      </form>
+      <div id="searchInfo">
+        {{#if results.count}}
+        <strong>{{results.count}}</strong> of <strong>{{results.offersTotal}}</strong> offers match your search query:
+        {{else}}
+        No offer matches your search query.
+        {{#if currentUser}}
+        If you can offer this, create a <a href="{{pathFor 'offerCreate'}}">new Offer</a>.
+        {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <!-- search results begin -->
+  <div class="offers">
+    {{#each results.offers}}
+    {{> offerItem}}
+    {{/each}}
+  </div>
+  <!-- search results end -->
+</template>

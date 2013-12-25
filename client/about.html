@@ -1,7 +1,10 @@
-minutocash
-==========
+<template name="about">
+<div class="offer">
+<div class="offer-content">
+<!-- begin markdown section -->
+{{#markdown}}
 
-# About
+# About minutocash
 (für deutsch, siehe unten / for german, see below)
 
 minutocash is a platform to share offers to people you know in real life, built with [Meteor](https://www.meteor.com/). The platform should bring people together, which like to share and develop their skills.
@@ -46,10 +49,10 @@ The minutocash platform is mainly developed by the swiss cooperative **sinndrin 
 Parts of the app come from the following sources:
 
 * [DISCOVER METEOR](https://www.discovermeteor.com/), the great book for learning Meteor.
-  * Almost all parts of the app are more or less influenced by this source.
+* Almost all parts of the app are more or less influenced by this source.
 * [hmmm](https://github.com/schuel/hmmm), a Course-Organization-Platform built with Meteor.
-  * Fulltext-search with realtime-output.
-  * The fancy ticker at the top.
+* Fulltext-search with realtime-output.
+* The fancy ticker at the top.
 
 * * *
 
@@ -92,3 +95,9 @@ Du kannst auch ein neues Konto eröffnen, aber denk daran, dass die Seite nur f�
 # Credits
 
 Siehe Credits im englischsprachigen Teil.
+
+{{/markdown}}
+<!-- end markdown section -->
+</div>
+</div>
+</template>

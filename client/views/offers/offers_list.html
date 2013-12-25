@@ -1,68 +1,9 @@
 <template name="offersList">
   {{#if currentUser}}
-  <div class="search">
-    {{> searchForm }}
-
-    <div id="searchInfo">
-      {{#if results.count}}
-      <strong>{{results.count}}</strong> of <strong>{{results.offersTotal}}</strong> offers match your search query:
-      {{else}}
-      No offer matches your search query.
-      {{#if currentUser}}
-      If you can offer this, create a <a href="{{pathFor 'offerCreate'}}">new Offer</a>.
-      {{/if}}
-      {{/if}}
-    </div>
-  </div>
-
-  <div class="offers">
-    {{#each results.offers}}
-    {{> offerItem}}
-    {{/each}}
-  </div>
+  <!-- search form and display of offers -->
+  {{> search }}
   {{else}}
   <!--Information for not logged in users.-->
-  <div class="offers">
-    <div class="offer">
-      <div class="offer-content">
-        <h3 style="color:red;">Du bist nicht angemeldet!</h3>
-
-        <p>Wie auf der <a href="/about">About Seite</a> beschrieben, sind die Funktionen dieser
-          minuto Plattform nur für eingeloggte Benutzer verfügbar.</p>
-
-        <p>Um die Plattform zu testen, melde dich mit einem vordefinierten Test-Benuter an,
-         der bereits einige Angebote und geteilte Angebote als Beispiel enthält.
-          Alternativ kannst du auch einen neuen Benutzeraccount erstellen.</p><br>
-
-        <p>Die folgenden Test-Benutzeraccounts sind zur Anmeldung verfügbar:</p>
-        <ul>
-          <li>Benutzername: <strong>Foobar</strong> / Passwort: <strong>Foobar</strong></li>
-          <li>Benutzername: <strong>Barfoo</strong> / Passwort: <strong>Barfoo</strong></li>
-          <li>Benutzername: <strong>Tester</strong> / Passwort: <strong>Tester</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="offers">
-    <div class="offer">
-      <div class="offer-content">
-        <h3 style="color:red;">You are not logged in!</h3>
-
-        <p>As described on the <a href="/about">About page</a>, the minutocash
-          platform functions are only available to logged in users.</p>
-
-        <p>To test the functions, log in with a pre-defined account which has already some offers populated
-          or create your own new account.</p><br>
-
-        <p>The following accounts are already available for test purposes an have populated offers and shared
-          offers:</p>
-        <ul>
-          <li>Username: <strong>Foobar</strong> / Password: <strong>Foobar</strong></li>
-          <li>Username: <strong>Barfoo</strong> / Password: <strong>Barfoo</strong></li>
-          <li>Username: <strong>Tester</strong> / Password: <strong>Tester</strong></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  {{> anonymousUsersInformation}}
   {{/if}}
 </template>
