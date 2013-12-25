@@ -4,6 +4,12 @@
 Template.search.events({
   'keyup input': function (event) {
     Session.set('search', event.currentTarget.value);
+  },
+  // do nothing if return is pressed
+  'keypress input': function (event) {
+    if (event.which === 13) {
+      event.preventDefault();
+    }
   }
 });
 
