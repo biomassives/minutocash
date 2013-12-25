@@ -21,8 +21,6 @@ Template.notification.events({
 
     ShareRelations.update(this._id, {$set: {accepted: true}});
     var offer = { _id: this.offerId };
-    // TODO: check if this really fixes the issue with the nonreactive publication
-    Meteor.subscribe('offersShared');
     Router.go('offerPage', offer);
   }
 });

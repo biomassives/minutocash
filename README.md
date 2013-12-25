@@ -50,6 +50,8 @@ Parts of the app come from the following sources:
 * [hmmm](https://github.com/schuel/hmmm), a Course-Organization-Platform built with Meteor.
   * Fulltext-search with realtime-output.
   * The fancy ticker at the top.
+* [meteor-publish-with-relations](https://github.com/erundook/meteor-publish-with-relations), a Meteor.js SmartPackage to publish associated collections at once.
+  * [David Weldon](http://stackoverflow.com/users/635981/david-weldon) for answering [this question](http://stackoverflow.com/q/20753279/3068252) and pointing to the publish-with-relations package.
 
 * * *
 
