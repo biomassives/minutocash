@@ -29,24 +29,12 @@ Meteor.methods({
     if (!offer)
       throw new Meteor.Error(422, 'You must share an offer');
 
-    // get the most appropriate username, an offerwith a secure fallback
-    var issuerName = user.username;
-    if (user.profile && user.profile.name) {
-      issuerName = user.profile.name;
-    }
-    var receiverName = receiver.username;
-    if (receiver.profile && receiver.profile.name) {
-      receiverName = receiver.profile.name;
-    }
-
-    var offerText = offer.firstname + " " + offer.lastname;
-
     shareRelation = _.extend(_.pick(shareRelationAttributes, 'offerId'), {
-      offerText: offerText,
+      offerFirstAndLastname: offer.firstname + " " + offer.lastname,
       issuerId: user._id,
-      issuerName: issuerName,
+      issuerName: displayName(user),
       receiverId: receiver._id,
-      receiverName: receiverName,
+      receiverName: displayName(receiver),
       accepted: false,
       submitted: new Date().getTime()
     });
