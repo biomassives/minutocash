@@ -9,11 +9,22 @@
 
       <p>{{content}}</p>
 
-      <p>owned by {{#if ownOffer}}<span class="label label-important">me</span>{{else}}<span class="label label-success">{{ownerName}}</span>{{/if}}</p>
+      <p>owned by
+        {{#if ownOffer}}
+        <span class="label label-important">me</span>
+        {{else}}
+        <span class="label label-success">{{ownerName}}</span> and shared to me by
+        <span class="label label-success">{{shareIssuerName}}</span>
+        {{/if}}
+      </p>
     </div>
-    {{#unless detailsView}}<a href="{{pathFor 'offerPage'}}" class="view-details btn">View Details</a>{{/unless}}
+    {{#unless detailsView}}<a href="{{pathFor 'offerPage'}}" class="view-details btn"><i class="icon-eye-open"></i> View Details</a>{{/unless}}
     {{#if detailsView}}
-      {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}" class="view-details btn"><i class="icon-edit"></i> Edit</a>{{/if}}
+    {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}" class="view-details btn"><i class="icon-edit"></i> Edit</a>
+    {{else}}
+    <a href="{{pathFor 'offerPage'}}" class="view-details btn delete"><i class="icon-remove"></i> Delete from my
+      collection</a>
+    {{/if}}
     {{/if}}
   </div>
 </template>

@@ -8,6 +8,13 @@ ShareRelations.allow({
   remove: ownsDocument
 });
 
+ShareRelations.deny({
+  update: function (userId, offer, fieldNames) {
+    // may only edit the following fields:
+    return (_.without(fieldNames, 'accepted').length > 0);
+  }
+});
+
 Meteor.methods({
   createShareRelation: function (shareRelationAttributes, userName) {
     var user = Meteor.user();
@@ -54,5 +61,14 @@ Meteor.methods({
       throw new Meteor.Error(422, "You are not the owner of this offer.");
     }
     return ShareRelations.remove({offerId: offer._id});
+  },
+  // remove a shareRelation as receiver of a shareRelation
+  removeShareRelationAsReceiver: function (offer) {
+    var user = Meteor.user();
+    var currentShareRelation = ShareRelations.findOne({ receiverId: user._id, offerId: offer._id });
+    if (!ownsDocument(user._id, currentShareRelation)) {
+      throw new Meteor.Error(422, "You can only delete offers from your collection which have been shared to you.");
+    }
+    return ShareRelations.remove(currentShareRelation._id);
   }
 });
