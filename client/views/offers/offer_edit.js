@@ -27,9 +27,17 @@ Template.offerEdit.events({
     e.preventDefault();
 
     if (confirm("Delete this offer?")) {
-      var currentOfferId = this._id;
-      Offers.remove(currentOfferId);
-      Router.go('offersList');
+      var currentOffer = this;
+      // call the method to delete all shareRelations with a relation to the to be deleted offer
+      Meteor.call('removeShareRelationsOnOfferRemove', currentOffer, function (error) {
+        if (error) {
+          // display the error to the user
+          throwError(error.reason);
+        } else {
+          Offers.remove(currentOffer._id);
+          Router.go('offersList');
+        }
+      });
     }
   }
 });

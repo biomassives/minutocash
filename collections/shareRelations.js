@@ -46,5 +46,13 @@ Meteor.methods({
     }
 
     return ShareRelations.insert(shareRelation);
+  },
+  // remove all shareRelations with a relation to the to be deleted offer
+  removeShareRelationsOnOfferRemove: function (offer) {
+    var user = Meteor.user();
+    if (!ownsDocument(user._id, offer)) {
+      throw new Meteor.Error(422, "You are not the owner of this offer.");
+    }
+    return ShareRelations.remove({offerId: offer._id});
   }
 });
