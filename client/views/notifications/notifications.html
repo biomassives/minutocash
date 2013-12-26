@@ -19,8 +19,8 @@
 
 <template name="notification">
   <li>
-    <a href="{{notificationOfferPath}}">
-      <strong>{{issuerName}}</strong> wants to share the offer <strong>{{offerFirstAndLastname}}</strong> with you (click to accept).
-    </a>
+    <p><strong>{{issuerName}}</strong> wants to share the offer <strong>{{offerFirstAndLastname}}</strong> with you.</p>
+    <p><a href="{{notificationOfferPath}}" class="btn btn-primary accept">Accept</a><a href="" class="btn btn-danger dismiss">Dismiss</a></p>
   </li>
+  <li role="presentation" class="divider"></li>
 </template>

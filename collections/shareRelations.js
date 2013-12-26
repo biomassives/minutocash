@@ -4,10 +4,7 @@
 ShareRelations = new Meteor.Collection('shareRelations');
 
 ShareRelations.allow({
-  // TODO: check if this function is okay.
-  update: function (userId, doc) {
-    return doc && ( doc.receiverId === userId || doc.issuerId === userId);
-  },
+  update: ownsDocument,
   remove: ownsDocument
 });
 
@@ -28,6 +25,7 @@ Meteor.methods({
       throw new Meteor.Error(422, "You can\'t share with the owner of the offer");
     if (!offer)
       throw new Meteor.Error(422, 'You must share an offer');
+
 
     shareRelation = _.extend(_.pick(shareRelationAttributes, 'offerId'), {
       offerFirstAndLastname: offer.firstname + " " + offer.lastname,

@@ -66,7 +66,6 @@ Meteor.methods({
     var offer = _.extend(_.pick(offerAttributes, 'firstname', 'lastname', 'phone', 'content'), {
       // set meta properties
       ownerId: user._id,
-      // FIXME: get the best username (user.profile.name) but with fallback
       ownerName: displayName(user),
       created: new Date().getTime()
     });

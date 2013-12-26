@@ -16,11 +16,16 @@ Template.notification.helpers({
   }
 });
 Template.notification.events({
-  'click a': function (e) {
+  'click .accept': function (e) {
     e.preventDefault();
 
     ShareRelations.update(this._id, {$set: {accepted: true}});
     var offer = { _id: this.offerId };
     Router.go('offerPage', offer);
+  },
+  'click .dismiss': function (e) {
+    e.preventDefault();
+
+    ShareRelations.remove({_id: this._id});
   }
 });
