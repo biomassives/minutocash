@@ -33,6 +33,11 @@ Template.offerItem.events({
         }
       });
     }
+  },
+  'click .generate-pdf': function (e) {
+    e.preventDefault();
 
+    // call the method which generates the pdf
+    generateOfferPdf(this);
   }
 });

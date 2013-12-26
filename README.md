@@ -18,6 +18,7 @@ The main concept comes from the decentral currency [minutocash](http://www.minut
 * Share offers with other users
 * Search your offers
 * Display notifications if an user receives a new sharing offer
+* Export Offers to PDF
 
 # Testing and development
 
@@ -52,6 +53,8 @@ Parts of the app come from the following sources:
   * The fancy ticker at the top.
 * [meteor-publish-with-relations](https://github.com/erundook/meteor-publish-with-relations), a Meteor.js SmartPackage to publish associated collections at once.
   * Thanks to [David Weldon](http://stackoverflow.com/users/635981/david-weldon) for answering [this question](http://stackoverflow.com/q/20753279/3068252) and pointing to the publish-with-relations package.
+* [jsPDF](https://github.com/MrRio/jsPDF), to generate PDF files in JavaScript. HTML5 FTW.
+  * Copyright (c) 2010-2012 James Hall, https://github.com/MrRio/jsPDF
 
 * * *
 
@@ -70,6 +73,7 @@ Das Prinzip ist angelehnt an das das selbst geschöpfte und dezentrale Zahlungsm
 * Angebote mit anderen Benutzern teilen
 * Angebote durchsuchen
 * Benachrichtigungen bei neuen geteilten Angeboten erhalten
+* Angebote als PDF exportieren
 
 # Testen und Entwicklung
 

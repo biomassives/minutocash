@@ -6,7 +6,7 @@
 
       <p>{{phone}}</p>
 
-      <p>{{content}}</p>
+      <p>{{breaklines content}}</p>
 
       <p>owned by
         {{#if ownOffer}}
@@ -17,13 +17,17 @@
         {{/if}}
       </p>
     </div>
-    {{#unless detailsView}}<a href="{{pathFor 'offerPage'}}" class="view-details btn"><i class="icon-eye-open"></i> View Details</a>{{/unless}}
+    {{#unless detailsView}}
+    <a href="{{pathFor 'offerPage'}}" class="view-details btn"><i class="icon-eye-open"></i> View Details</a>
+    {{/unless}}
     {{#if detailsView}}
-    {{#if ownOffer}}<a href="{{pathFor 'offerEdit'}}" class="view-details btn"><i class="icon-edit"></i> Edit</a>
+    {{#if ownOffer}}
+    <a href="{{pathFor 'offerEdit'}}" class="view-details btn"><i class="icon-edit"></i> Edit</a>
     {{else}}
     <a href="{{pathFor 'offerPage'}}" class="view-details btn delete"><i class="icon-remove"></i> Delete from my
       collection</a>
     {{/if}}
     {{/if}}
+    <a href="" class="view-details btn generate-pdf"><i class="icon-file"></i> PDF</a>
   </div>
 </template>
