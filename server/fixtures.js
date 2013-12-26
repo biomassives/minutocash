@@ -82,8 +82,7 @@ if (ShareRelations.find().count() === 0) {
     issuerName: barfoo.profile.name,
     receiverId: foobarId,
     receiverName: foobar.profile.name,
-    // TODO: make accepted default and integrate checking the receiver if he wants this offer
-    accepted: true,
+    accepted: false,
     created: new Date().getTime()
   });
   ShareRelations.insert({
@@ -92,8 +91,7 @@ if (ShareRelations.find().count() === 0) {
     issuerName: foobar.profile.name,
     receiverId: barfooId,
     receiverName: barfoo.profile.name,
-    // TODO: make accepted default and integrate checking the receiver if he wants this offer
-    accepted: true,
+    accepted: false,
     created: new Date().getTime()
   });
 }
