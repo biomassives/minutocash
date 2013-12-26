@@ -78,6 +78,8 @@ if (ShareRelations.find().count() === 0) {
   // create some shareRelations
   ShareRelations.insert({
     offerId: shareRelationId,
+    offerFirstAndLastname: Offers.findOne({_id: shareRelationId}).firstname + " " +
+      Offers.findOne({_id: shareRelationId}).lastname,
     issuerId: barfooId,
     issuerName: barfoo.profile.name,
     receiverId: foobarId,
@@ -87,10 +89,23 @@ if (ShareRelations.find().count() === 0) {
   });
   ShareRelations.insert({
     offerId: maxPowerId,
+    offerFirstAndLastname: Offers.findOne({_id: maxPowerId}).firstname + " " +
+      Offers.findOne({_id: maxPowerId}).lastname,
     issuerId: foobarId,
     issuerName: foobar.profile.name,
     receiverId: barfooId,
     receiverName: barfoo.profile.name,
+    accepted: false,
+    created: new Date().getTime()
+  });
+  ShareRelations.insert({
+    offerId: maxPowerId,
+    offerFirstAndLastname: Offers.findOne({_id: maxPowerId}).firstname + " " +
+      Offers.findOne({_id: maxPowerId}).lastname,
+    issuerId: foobarId,
+    issuerName: foobar.profile.name,
+    receiverId: testerId,
+    receiverName: tester.profile.name,
     accepted: false,
     created: new Date().getTime()
   });
