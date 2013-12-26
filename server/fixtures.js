@@ -63,23 +63,14 @@ if (Offers.find().count() === 0) {
     content: 'Owning nothing and be owned by no one',
     created: new Date().getTime()
   });
-  var shareRelationId = Offers.insert({
-    firstname: 'Share',
-    lastname: 'Relation',
-    phone: '+41 77 123 88 99',
-    content: 'Refactoring code, waiting for better times.',
-    ownerId: barfooId,
-    ownerName: barfoo.profile.name,
-    created: new Date().getTime()
-  });
 }
 
 if (ShareRelations.find().count() === 0) {
   // create some shareRelations
   ShareRelations.insert({
-    offerId: shareRelationId,
-    offerFirstAndLastname: Offers.findOne({_id: shareRelationId}).firstname + " " +
-      Offers.findOne({_id: shareRelationId}).lastname,
+    offerId: superStarId,
+    offerFirstAndLastname: Offers.findOne({_id: superStarId}).firstname + " " +
+      Offers.findOne({_id: superStarId}).lastname,
     issuerId: barfooId,
     issuerName: barfoo.profile.name,
     receiverId: foobarId,
