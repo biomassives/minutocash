@@ -38,6 +38,6 @@ Template.offerItem.events({
     e.preventDefault();
 
     // call the method which generates the pdf
-    generateOfferPdf(this);
+    generateOffersPdf(Offers.find({_id: this._id}));
   }
 });
