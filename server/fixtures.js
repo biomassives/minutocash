@@ -35,7 +35,7 @@ if (Offers.find().count() === 0) {
     ownerName: foobar.profile.name,
     firstname: 'Max',
     lastname: 'Power',
-    content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
+    content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich, and:\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n* Pellentesque laoreet dolor a nibh faucibus, ultricies pulvinar nisl molestie.\n* Nullam ut justo sit amet neque malesuada gravida.\n* Quisque sollicitudin leo quis felis pharetra dictum.\n* Nullam in sapien sit amet risus cursus vestibulum sit amet nec purus.\n* Sed at urna sollicitudin, eleifend leo vel, iaculis lectus.\n* In lacinia ante id laoreet imperdiet.\n* Cras semper sapien sed varius imperdiet.\n* Etiam posuere purus non felis dignissim viverra.',
     contactFreeText1: "sinndrin genossenschaft",
     contactFreeText2: "Meteor Telescoper",
     phone: '+41 79 123 45 67',
