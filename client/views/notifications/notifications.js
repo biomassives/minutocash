@@ -20,8 +20,8 @@ Template.notification.events({
     e.preventDefault();
 
     ShareRelations.update(this._id, {$set: {accepted: true}});
-    var offer = { _id: this.offerId };
-    Router.go('offerPage', offer);
+    // FIXME: go to the newly inserted offer. hangs sometimes.
+    //Router.go('offerPage', {_id: this.offerId});
   },
   'click .dismiss': function (e) {
     e.preventDefault();
