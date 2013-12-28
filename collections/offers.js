@@ -4,7 +4,7 @@
  * _id: offer id (String)
  * created: timestamp of the creation date (Number)
  * updated: timestamp of the last update (Number)
- * ownerId: user._id (String)
+ * ownerId: id of the owner (String)
  * ownerName: name of the owner (String) [denormalized]
  * firstname: First name (String)
  * lastname: Last Name (String)
@@ -12,12 +12,12 @@
  * contactFreeText1:  (String)
  * contactFreeText2:  (String)
  * phone: Phone number (String)
- * email:  (String)
- * website:  (String)
- * addressStreet:  (String)
- * addressPostalCode:  (String)
- * addressLocation:  (String)
- * addressCountry: (String)
+ * email: E-Mail (String)
+ * website: Website (String)
+ * addressStreet: Street (String)
+ * addressPostalCode: Postal Code (String)
+ * addressLocation: Location (String)
+ * addressCountry: Country (String)
  * ===================================
  */
 Offers = new Meteor.Collection('offers');
