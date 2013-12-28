@@ -15,6 +15,11 @@ Template.offerItem.helpers({
   shareIssuerName: function () {
     if (ShareRelations.findOne({offerId: this._id, receiverId: Meteor.userId()}))
       return ShareRelations.findOne({offerId: this._id, receiverId: Meteor.userId()}).issuerName;
+  },
+  updatedText: function() {
+    var date = new Date(this.updated);
+    // german date notation
+    return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
   }
 });
 

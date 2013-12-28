@@ -2,20 +2,34 @@
   <div class="offer">
     <div class="offer-content">
       <img class="offerImg" src="/user-placeholder.jpg" alt="Smiley face" width="80px">
-      <h3><a href="{{pathFor 'offerPage'}}">{{firstname}} {{lastname}}</a></h3>
-
-      <p>{{phone}}</p>
-
-      <p>{{breaklines content}}</p>
-
-      <p>owned by
+      <h3><a href="{{pathFor 'offerPage'}}">{{firstname}} {{lastname}}</a>      <span style="position: relative; display:inline">owned by
         {{#if ownOffer}}
         <span class="label label-important">me</span>
         {{else}}
-        <span class="label label-success">{{ownerName}}</span> and shared to me by
-        <span class="label label-success">{{shareIssuerName}}</span>
+        <span class="label label-success">{{ownerName}}</span>
+        {{#if detailsView}}
+        and shared to me by <span class="label label-success">{{shareIssuerName}}</span>
         {{/if}}
-      </p>
+        {{/if}}
+      </span></h3>
+
+
+      {{#if detailsView}}
+      <p><strong>{{contactFreeText1}}</strong></p>
+      <p><strong>{{contactFreeText2}}</strong></p>
+      <p>{{addressStreet}}</p>
+      <p>{{addressPostalCode}} {{addressLocation}}</p>
+      <p>{{addressCountry}}</p>
+      {{/if}}
+
+      <p>{{phone}}</p>
+      <p>{{email}}</p>
+      {{#if detailsView}}
+      <p>{{website}}</p>
+      <p>Updated: {{updatedText}}</p>
+      {{/if}}
+
+      <p style="clear:left;">{{breaklines content}}</p>
     </div>
     {{#unless detailsView}}
     <a href="{{pathFor 'offerPage'}}" class="view-details btn"><i class="icon-eye-open"></i> View Details</a>

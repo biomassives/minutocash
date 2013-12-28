@@ -29,39 +29,58 @@ if (Meteor.users.find().count() === 0) {
 if (Offers.find().count() === 0) {
   // create some offers
   var maxPowerId = Offers.insert({
-    firstname: 'Max',
-    lastname: 'Power',
-    phone: '+41 79 123 45 67',
-    content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
+    created: new Date().getTime(),
+    updated: new Date().getTime(),
     ownerId: foobarId,
     ownerName: foobar.profile.name,
-    created: new Date().getTime()
+    firstname: 'Max',
+    lastname: 'Power',
+    content: 'Cooking, Coding Meteor Webapps, Sightseeing around Zurich.',
+    contactFreeText1: "sinndrin genossenschaft",
+    contactFreeText2: "Meteor Telescoper",
+    phone: '+41 79 123 45 67',
+    email: "max@example.org",
+    website: "www.example.org",
+    addressStreet: "Fakestreet 123",
+    addressPostalCode: "8001",
+    addressLocation: "Zürich",
+    addressCountry: "Switzerland"
   });
   var superStarId = Offers.insert({
-    firstname: 'Super',
-    lastname: 'Star',
-    phone: '+41 78 321 54 76',
-    content: 'Writing Biographies, Feeding pets like dogs, cats and cavies.',
+    created: new Date().getTime(),
+    updated: new Date().getTime(),
     ownerId: barfooId,
     ownerName: barfoo.profile.name,
-    created: new Date().getTime()
+    firstname: 'Super',
+    lastname: 'Star',
+    content: 'Writing Biographies, Feeding pets like dogs, cats and cavies.',
+    contactFreeText1: "",
+    contactFreeText2: "",
+    phone: '+41 78 321 54 76',
+    email: "super@example.org",
+    website: "",
+    addressStreet: "Mockupway 77",
+    addressPostalCode: "8004",
+    addressLocation: "Zürich",
+    addressCountry: "Switzerland"
   });
   var batWomanId = Offers.insert({
-    firstname: 'Bat',
-    lastname: 'Woman',
-    phone: '+41 76 765 43 21',
-    content: 'Decision Making, Teaching Tree climbing, Accounting.',
+    created: new Date().getTime(),
+    updated: new Date().getTime(),
     ownerId: testerId,
     ownerName: tester.profile.name,
-    created: new Date().getTime(),
-  });
-  // offer without an owner. for testing purposes (visible if no user is logged in?)
-  var noOwnerId = Offers.insert({
-    firstname: 'No',
-    lastname: 'Owner',
+    firstname: 'Bat',
+    lastname: 'Woman',
+    content: 'Decision Making, Teaching Tree climbing, Accounting.',
+    contactFreeText1: "",
+    contactFreeText2: "",
     phone: '+41 76 765 43 21',
-    content: 'Owning nothing and be owned by no one',
-    created: new Date().getTime()
+    email: "bat@example.org",
+    website: "bat.example.org",
+    addressStreet: "Whooopypath 987",
+    addressPostalCode: "8002",
+    addressLocation: "Zürich",
+    addressCountry: "Switzerland"
   });
 }
 

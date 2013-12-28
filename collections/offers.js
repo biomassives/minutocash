@@ -3,12 +3,21 @@
  * Each offer is represented by a document in the Offers collection:
  * _id: offer id (String)
  * created: timestamp of the creation date (Number)
+ * updated: timestamp of the last update (Number)
  * ownerId: user._id (String)
  * ownerName: name of the owner (String) [denormalized]
  * firstname: First name (String)
  * lastname: Last Name (String)
- * phone: Phone number (String)
  * content: Content (String)
+ * contactFreeText1:  (String)
+ * contactFreeText2:  (String)
+ * phone: Phone number (String)
+ * email:  (String)
+ * website:  (String)
+ * addressStreet:  (String)
+ * addressPostalCode:  (String)
+ * addressLocation:  (String)
+ * addressCountry: (String)
  * ===================================
  */
 Offers = new Meteor.Collection('offers');
@@ -23,7 +32,7 @@ Offers.deny({
     // TODO: check if all fields are not empty and not too long if an offer gets edited
 
     // may only edit the following fields (must be all fields which are being displayed by the form!):
-    return (_.without(fieldNames, 'firstname', 'lastname', 'phone', 'content').length > 0);
+    return (_.without(fieldNames, 'firstname', 'lastname', 'phone', 'content', 'updated').length > 0);
   }
 });
 

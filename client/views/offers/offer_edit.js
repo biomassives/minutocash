@@ -10,7 +10,8 @@ Template.offerEdit.events({
         firstname: $(e.target).find('[name=firstname]').val(),
         lastname: $(e.target).find('[name=lastname]').val(),
         phone: $(e.target).find('[name=phone]').val(),
-        content: $(e.target).find('[name=content]').val()
+        content: $(e.target).find('[name=content]').val(),
+        updated: new Date().getTime()
       };
 
     Offers.update(currentOfferId, {$set: offerProperties}, function (error) {
