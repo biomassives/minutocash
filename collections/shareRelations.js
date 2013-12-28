@@ -1,5 +1,16 @@
 /**
- * Created by mindestens on 12/23/13.
+ * ======== shareRelations data model ========
+ * Each shareRelation is represented by a document in the ShareRelations collection:
+ * _id: shareRelation id (String)
+ * created: timestamp of the creation date (Number)
+ * offerId: id of the related offer (String)
+ * offerFirstAndLastname: First name and Last name of the related offer (String) [denormalized]
+ * issuerId: id of the issuer (String)
+ * issuerName: name of the issuer (String) [denormalized]
+ * receiverId: id of the receiver (String)
+ * receiverName: name of the receiver (String) [denormalized]
+ * accepted: marks if the receiver has accepted this shareRelation (Boolean)
+ * ===================================
  */
 ShareRelations = new Meteor.Collection('shareRelations');
 

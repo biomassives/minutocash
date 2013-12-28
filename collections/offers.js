@@ -1,5 +1,15 @@
 /**
- * Created by mindestens on 12/13/13.
+ * ======== offers data model ========
+ * Each offer is represented by a document in the Offers collection:
+ * _id: offer id (String)
+ * created: timestamp of the creation date (Number)
+ * ownerId: user._id (String)
+ * ownerName: name of the owner (String) [denormalized]
+ * firstname: First name (String)
+ * lastname: Last Name (String)
+ * phone: Phone number (String)
+ * content: Content (String)
+ * ===================================
  */
 Offers = new Meteor.Collection('offers');
 
