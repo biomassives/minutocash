@@ -10,3 +10,5 @@ spin
 bootstrap
 accounts-ui-bootstrap-dropdown
 accounts-password
+showdown
+publish-with-relations
