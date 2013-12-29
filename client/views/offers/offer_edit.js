@@ -7,11 +7,19 @@ Template.offerEdit.events({
 
     var currentOfferId = this._id,
       offerProperties = {
+        updated: new Date().getTime(),
         firstname: $(e.target).find('[name=firstname]').val(),
         lastname: $(e.target).find('[name=lastname]').val(),
-        phone: $(e.target).find('[name=phone]').val(),
         content: $(e.target).find('[name=content]').val(),
-        updated: new Date().getTime()
+        contactFreeText1: $(e.target).find('[name=contactFreeText1]').val(),
+        contactFreeText2: $(e.target).find('[name=contactFreeText2]').val(),
+        phone: $(e.target).find('[name=phone]').val(),
+        email: $(e.target).find('[name=email]').val(),
+        website: $(e.target).find('[name=website]').val(),
+        addressStreet: $(e.target).find('[name=addressStreet]').val(),
+        addressPostalCode: $(e.target).find('[name=addressPostalCode]').val(),
+        addressLocation: $(e.target).find('[name=addressLocation]').val(),
+        addressCountry: $(e.target).find('[name=addressCountry]').val()
       };
 
     Offers.update(currentOfferId, {$set: offerProperties}, function (error) {

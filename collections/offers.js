@@ -32,7 +32,21 @@ Offers.deny({
     // TODO: check if all fields are not empty and not too long if an offer gets edited
 
     // may only edit the following fields (must be all fields which are being displayed by the form!):
-    return (_.without(fieldNames, 'firstname', 'lastname', 'phone', 'content', 'updated').length > 0);
+    return (_.without(fieldNames,
+      'updated',
+      'firstname',
+      'lastname',
+      'content',
+      'contactFreeText1',
+      'contactFreeText2',
+      'phone',
+      'email',
+      'website',
+      'addressStreet',
+      'addressPostalCode',
+      'addressLocation',
+      'addressCountry'
+    ).length > 0);
   }
 });
 
@@ -44,6 +58,10 @@ Meteor.methods({
     if (!user) {
       throw new Meteor.Error(401, "You need to login to create a new offer");
     }
+
+    // FIXME: error checking as a function
+    //var mandatoryShort = ["firstname", "lastname"];
+    //checkMandatoryFields(offerAttributes, mandatoryShort, 50);
 
     // ensure the offer has a firstname
     if (!offerAttributes.firstname) {
@@ -82,11 +100,26 @@ Meteor.methods({
     }
 
     // pick out the whitelisted keys
-    var offer = _.extend(_.pick(offerAttributes, 'firstname', 'lastname', 'phone', 'content'), {
+    var now = new Date().getTime();
+    var offer = _.extend(_.pick(offerAttributes,
+      'firstname',
+      'lastname',
+      'content',
+      'contactFreeText1',
+      'contactFreeText2',
+      'phone',
+      'email',
+      'website',
+      'addressStreet',
+      'addressPostalCode',
+      'addressLocation',
+      'addressCountry'
+    ), {
       // set meta properties
       ownerId: user._id,
       ownerName: displayName(user),
-      created: new Date().getTime()
+      created: now,
+      updated: now
     });
 
     var offerId = Offers.insert(offer);

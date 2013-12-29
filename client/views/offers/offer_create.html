@@ -1,37 +1,11 @@
 <template name="offerCreate">
   <form class="main form-horizontal">
     <div class="control-group">
-      <label class="control-label" for="firstname">First name</label>
-      <div class="controls">
-        <input name="firstname" type="text" value="" placeholder="Your First name"/>
+      {{> offerInputFields}}
+      <div class="control-group">
+        <div class="controls">
+          <input type="submit" value="Save" class="btn btn-primary"/>
+        </div>
       </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="lastname">Last name</label>
-      <div class="controls">
-        <input name="lastname" type="text" value="" placeholder="Your Last name"/>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="phone">Phone number</label>
-      <div class="controls">
-        <input name="phone" type="text" value="" placeholder="Your Phone number"/>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="content">Offer</label>
-      <div class="controls">
-        <textarea rows="5" name="content" type="text" value="" placeholder="Your Offer"/>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="controls">
-        <input type="submit" value="Save" class="btn btn-primary"/>
-      </div>
-    </div>
   </form>
 </template>
