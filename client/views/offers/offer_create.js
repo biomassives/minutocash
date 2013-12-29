@@ -2,7 +2,7 @@
  * Created by mindestens on 12/14/13.
  */
 Template.offerCreate.events({
-  'submit form': function(e) {
+  'submit form': function (e) {
     e.preventDefault();
 
     var offer = {
@@ -25,9 +25,7 @@ Template.offerCreate.events({
         // display the error to the user
         throwError(error.reason);
       }
-
       Router.go('offerPage', {_id: id});
-      return null;
     });
   }
 });

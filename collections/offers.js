@@ -23,31 +23,7 @@
 Offers = new Meteor.Collection('offers');
 
 Offers.allow({
-  update: ownsDocument,
   remove: ownsDocument
-});
-
-Offers.deny({
-  update: function (userId, offer, fieldNames) {
-    // TODO: check if all fields are not empty and not too long if an offer gets edited
-
-    // may only edit the following fields (must be all fields which are being displayed by the form!):
-    return (_.without(fieldNames,
-      'updated',
-      'firstname',
-      'lastname',
-      'content',
-      'contactFreeText1',
-      'contactFreeText2',
-      'phone',
-      'email',
-      'website',
-      'addressStreet',
-      'addressPostalCode',
-      'addressLocation',
-      'addressCountry'
-    ).length > 0);
-  }
 });
 
 Meteor.methods({
@@ -59,48 +35,36 @@ Meteor.methods({
       throw new Meteor.Error(401, "You need to login to create a new offer");
     }
 
-    // FIXME: error checking as a function
-    //var mandatoryShort = ["firstname", "lastname"];
-    //checkMandatoryFields(offerAttributes, mandatoryShort, 50);
+    // call method checkInputFields for all set fields which throws an error if needed
+    // mandatory short fields
+    var mandatoryShort = [
+      "firstname",
+      "lastname",
+      "addressStreet",
+      "addressPostalCode",
+      "addressLocation",
+      "addressCountry"
+    ];
+    checkInputFields(offerProperties, mandatoryShort, 50, true);
+    // optional short fields
+    var optionalShort = [
+      "contactFreeText1",
+      "contactFreeText2",
+      "phone",
+      "email",
+      "website"
+    ];
+    checkInputFields(offerProperties, optionalShort, 50, false);
+    // mandatory long fields
+    var mandatoryLong = ["content"];
+    checkInputFields(offerProperties, mandatoryLong, 2000, true);
+    // optional long fields
+    // var optionalLong = [""];
+    // checkInputFields(offerAttributes, optionalLong, 2000, false);
 
-    // ensure the offer has a firstname
-    if (!offerAttributes.firstname) {
-      throw new Meteor.Error(422, 'Please fill in a first name');
-    }
-    // ensure the offers firstname is not too long
-    if (offerAttributes.firstname.length > 50) {
-      throw new Meteor.Error(422, 'First name is too long');
-    }
 
-    // ensure the offer has a lastname
-    if (!offerAttributes.lastname) {
-      throw new Meteor.Error(422, 'Please fill in a last name');
-    }
-    // ensure the offers lastname is not too long
-    if (offerAttributes.lastname.length > 50) {
-      throw new Meteor.Error(422, 'Last name is too long');
-    }
-
-    // ensure the offer has a phone numer
-    if (!offerAttributes.phone) {
-      throw new Meteor.Error(422, 'Please fill in a phone numer');
-    }
-    // ensure the offers phone number is not too long
-    if (offerAttributes.phone.length > 50) {
-      throw new Meteor.Error(422, 'Phone number is too long');
-    }
-
-    // ensure the offer has a content
-    if (!offerAttributes.content) {
-      throw new Meteor.Error(422, 'Please fill in a content');
-    }
-    // ensure the offers content is not too long
-    if (offerAttributes.content.length > 2000) {
-      throw new Meteor.Error(422, 'Offer is too long');
-    }
-
-    // pick out the whitelisted keys
     var now = new Date().getTime();
+    // pick out the whitelisted keys
     var offer = _.extend(_.pick(offerAttributes,
       'firstname',
       'lastname',
@@ -125,5 +89,66 @@ Meteor.methods({
     var offerId = Offers.insert(offer);
 
     return offerId;
+  },
+  editOffer: function (currentOfferId, offerProperties) {
+    var user = Meteor.user();
+
+    // ensure the user is logged in
+    if (!user) {
+      throw new Meteor.Error(401, "You need to login to create a new offer");
+    }
+
+    // ensure the user is the owner of the offer
+    if (!ownsDocument(user._id, Offers.findOne(currentOfferId))) {
+      throw new Meteor.Error(422, 'You are not the owner of this offer');
+    }
+
+    // call method checkInputFields for all set fields which throws an error if needed
+    // mandatory short fields
+    var mandatoryShort = [
+      "firstname",
+      "lastname",
+      "addressStreet",
+      "addressPostalCode",
+      "addressLocation",
+      "addressCountry"
+    ];
+    checkInputFields(offerProperties, mandatoryShort, 50, true);
+    // optional short fields
+    var optionalShort = [
+      "contactFreeText1",
+      "contactFreeText2",
+      "phone",
+      "email",
+      "website"
+    ];
+    checkInputFields(offerProperties, optionalShort, 50, false);
+    // mandatory long fields
+    var mandatoryLong = ["content"];
+    checkInputFields(offerProperties, mandatoryLong, 2000, true);
+    // optional long fields
+    // var optionalLong = [""];
+    // checkInputFields(offerAttributes, optionalLong, 2000, false);
+
+    // pick out the whitelisted keys
+    var updatedOffer = _.extend(_.pick(offerProperties,
+      'firstname',
+      'lastname',
+      'content',
+      'contactFreeText1',
+      'contactFreeText2',
+      'phone',
+      'email',
+      'website',
+      'addressStreet',
+      'addressPostalCode',
+      'addressLocation',
+      'addressCountry'
+    ), {
+      // set meta properties
+      updated: new Date().getTime()
+    });
+
+    Offers.update(currentOfferId, {$set: updatedOffer});
   }
 });

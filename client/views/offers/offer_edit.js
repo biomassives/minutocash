@@ -7,7 +7,6 @@ Template.offerEdit.events({
 
     var currentOfferId = this._id,
       offerProperties = {
-        updated: new Date().getTime(),
         firstname: $(e.target).find('[name=firstname]').val(),
         lastname: $(e.target).find('[name=lastname]').val(),
         content: $(e.target).find('[name=content]').val(),
@@ -22,13 +21,13 @@ Template.offerEdit.events({
         addressCountry: $(e.target).find('[name=addressCountry]').val()
       };
 
-    Offers.update(currentOfferId, {$set: offerProperties}, function (error) {
-      if (error) {
-        // display the error to the user
-        throwError(error.reason);
-      } else {
-        Router.go('offerPage', {_id: currentOfferId});
-      }
+    Meteor.call('editOffer', currentOfferId, offerProperties, function (error) {
+        if (error) {
+          // display the error to the user
+          throwError(error.reason);
+        } else {
+          Router.go('offerPage', {_id: currentOfferId});
+        }
     });
   },
 

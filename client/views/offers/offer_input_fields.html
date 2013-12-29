@@ -1,6 +1,6 @@
 <template name="offerInputFields">
   <div class="control-group">
-    <label class="control-label" for="firstname">Fist name</label>
+    <label class="control-label mandatory" for="firstname">Fist name</label>
 
     <div class="controls">
       <input name="firstname" type="text" value="{{firstname}}" placeholder="First name"/>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="control-group">
-    <label class="control-label" for="lastname">Last name</label>
+    <label class="control-label mandatory" for="lastname">Last name</label>
 
     <div class="controls">
       <input name="lastname" type="text" value="{{lastname}}" placeholder="Last name"/>
@@ -17,7 +17,7 @@
 
 
   <div class="control-group">
-    <label class="control-label" for="addressStreet">Street and number</label>
+    <label class="control-label mandatory" for="addressStreet">Street and number</label>
 
     <div class="controls">
       <input name="addressStreet" type="text" value="{{addressStreet}}" placeholder="Street and number"/>
@@ -25,7 +25,7 @@
   </div>
 
   <div class="control-group">
-    <label class="control-label" for="addressPostalCode">Postal code</label>
+    <label class="control-label mandatory" for="addressPostalCode">Postal code</label>
 
     <div class="controls">
       <input name="addressPostalCode" type="text" value="{{addressPostalCode}}" placeholder="Postal Code"/>
@@ -33,18 +33,18 @@
   </div>
 
   <div class="control-group">
-    <label class="control-label" for="addressLocation">Location</label>
+    <label class="control-label mandatory" for="addressLocation">Location</label>
 
     <div class="controls">
-      <input name="addressLocation" type="text" value="{{addressLocation}}" placeholder="Location"/>
+      <input name="addressLocation" type="text" value="{{addressLocation}}" placeholder="Location (e.g. Zürich)"/>
     </div>
   </div>
 
   <div class="control-group">
-    <label class="control-label" for="addressCountry">Country</label>
+    <label class="control-label mandatory" for="addressCountry">Country</label>
 
     <div class="controls">
-      <input name="addressCountry" type="text" value="{{addressCountry}}" placeholder="Country"/>
+      <input name="addressCountry" type="text" value="{{addressCountry}}" placeholder="Country (e.g. Switzerland)"/>
     </div>
   </div>
 
@@ -68,7 +68,7 @@
     <label class="control-label" for="phone">Phone number</label>
 
     <div class="controls">
-      <input name="phone" type="text" value="{{phone}}" placeholder="Phone number"/>
+      <input name="phone" type="tel" value="{{phone}}" placeholder="Phone number"/>
     </div>
   </div>
 
@@ -76,7 +76,7 @@
     <label class="control-label" for="email">Email</label>
 
     <div class="controls">
-      <input name="email" type="text" value="{{email}}" placeholder="Email address"/>
+      <input name="email" type="email" value="{{email}}" placeholder="Email address"/>
     </div>
   </div>
 
@@ -84,12 +84,12 @@
     <label class="control-label" for="website">Website</label>
 
     <div class="controls">
-      <input name="website" type="text" value="{{website}}" placeholder="http://www.example.org"/>
+      <input name="website" type="url" value="{{website}}" placeholder="http://www.example.org"/>
     </div>
   </div>
 
   <div class="control-group">
-    <label class="control-label" for="content">Offer</label>
+    <label class="control-label mandatory" for="content">Offer</label>
 
     <div class="controls">
       <textarea rows="5" name="content" type="text" value="" placeholder="Your Offer">{{content}}</textarea>
