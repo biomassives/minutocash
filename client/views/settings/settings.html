@@ -1,0 +1,32 @@
+<template name="settings">
+  <form class="main form-horizontal">
+    <h3>Profile</h3>
+
+    <div class="control-group">
+      <label class="control-label mandatory" for="username">Username</label>
+
+      <div class="controls">
+        <input name="username" type="text" value="{{username}}" placeholder="Username" disabled/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label mandatory" for="emailPrimary">Primary Email address</label>
+
+      <div class="controls">
+        <input name="emailPrimary" type="text" value="{{emails.0.address}}" placeholder="Your Email address" disabled/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label mandatory" for="profileName">Profile Name</label>
+
+      <div class="controls">
+        <input name="profileName" type="text" value="{{profile.name}}" placeholder="Profile Name"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" value="Update" class="btn btn-primary update"/>
+      </div>
+    </div>
+  </form>
+</template>
