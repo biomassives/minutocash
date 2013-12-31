@@ -45,7 +45,7 @@ Meteor.methods({
       "addressLocation",
       "addressCountry"
     ];
-    checkInputFields(offerProperties, mandatoryShort, 50, true);
+    checkInputFields(offerAttributes, mandatoryShort, 50, true);
     // optional short fields
     var optionalShort = [
       "contactFreeText1",
@@ -54,10 +54,10 @@ Meteor.methods({
       "email",
       "website"
     ];
-    checkInputFields(offerProperties, optionalShort, 50, false);
+    checkInputFields(offerAttributes, optionalShort, 50, false);
     // mandatory long fields
     var mandatoryLong = ["content"];
-    checkInputFields(offerProperties, mandatoryLong, 2000, true);
+    checkInputFields(offerAttributes, mandatoryLong, 2000, true);
     // optional long fields
     // var optionalLong = [""];
     // checkInputFields(offerAttributes, optionalLong, 2000, false);
@@ -90,7 +90,7 @@ Meteor.methods({
 
     return offerId;
   },
-  editOffer: function (currentOfferId, offerProperties) {
+  editOffer: function (currentOfferId, offerAttributes) {
     var user = Meteor.user();
 
     // ensure the user is logged in
@@ -113,7 +113,7 @@ Meteor.methods({
       "addressLocation",
       "addressCountry"
     ];
-    checkInputFields(offerProperties, mandatoryShort, 50, true);
+    checkInputFields(offerAttributes, mandatoryShort, 50, true);
     // optional short fields
     var optionalShort = [
       "contactFreeText1",
@@ -122,16 +122,16 @@ Meteor.methods({
       "email",
       "website"
     ];
-    checkInputFields(offerProperties, optionalShort, 50, false);
+    checkInputFields(offerAttributes, optionalShort, 50, false);
     // mandatory long fields
     var mandatoryLong = ["content"];
-    checkInputFields(offerProperties, mandatoryLong, 2000, true);
+    checkInputFields(offerAttributes, mandatoryLong, 2000, true);
     // optional long fields
     // var optionalLong = [""];
     // checkInputFields(offerAttributes, optionalLong, 2000, false);
 
     // pick out the whitelisted keys
-    var updatedOffer = _.extend(_.pick(offerProperties,
+    var updatedOffer = _.extend(_.pick(offerAttributes,
       'firstname',
       'lastname',
       'content',
