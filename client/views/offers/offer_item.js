@@ -18,8 +18,7 @@ Template.offerItem.helpers({
   },
   updatedText: function() {
     var date = new Date(this.updated);
-    // german date notation
-    return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    return dateText(date);
   }
 });
 
